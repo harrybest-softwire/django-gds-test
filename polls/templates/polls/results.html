@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load govuk_frontend_django %}
+{% load static %}
+
+{% block content %}
+<h1 class="govuk-heading-l">"{{ question.question_text }}" poll results</h1>
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Vote totals</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Choice</th>
+      <th scope="col" class="govuk-table__header">Number of votes</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for choice in question.choice_set.all %}
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">{{ choice.choice_text }}</th>
+          <td class="govuk-table__cell">{{ choice.votes }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<ul>
+</ul>
+<a class="govuk-button govuk-!-margin-right-3" href="{% url 'polls:index' %}">Back to polls</a>
+<a class="govuk-button govuk-button--secondary" href="{% url 'polls:detail' question.id %}">Vote again</a>
+{% endblock content %}

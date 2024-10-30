@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load govuk_frontend_django %}
+<html lang="en">
+{% load static %}
+{% block content %}
+    {% if latest_question_list %}
+            {% for question in latest_question_list %}
+                {% url 'polls:detail' question.id as question_detail_url %}
+                {% gds_summary_list %}
+                    {% gds_summary_list_card %}
+                        {% gds_summary_list_card_title text=question.question_text %}
+                        {% gds_summary_list_card_actions %}
+                            {% gds_summary_list_card_actions_item text="vote" href=question_detail_url %}
+                        {% endgds_summary_list_card_actions %}
+                    {% endgds_summary_list_card %}
+                   {% for choice in question.choice_set.all %}
+                       {% gds_summary_list_row %}
+                           {% gds_summary_list_row_key text=choice.choice_text %}
+                           {% gds_summary_list_row_value text=choice.votes %}
+                       {% endgds_summary_list_row %}
+                   {% endfor %}
+                {% endgds_summary_list %}
+            {% endfor %}
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+{% endblock content %}
+</html>

@@ -1,0 +1,14 @@
+{% extends "govuk_frontend_django/base.html" %}
+{% load static govuk_frontend_django %}
+
+{% block title %}GOV.UK Frontend Django example project{% endblock title %}
+
+{% block head %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
+{% endblock head %}
+
+{% block header %}
+    {% url 'polls:index' as homepageUrl %}
+    {% gds_header homepageUrl=homepageUrl serviceName="GOV.UK Frontend Django example project" serviceUrl=homepageUrl containerClasses="govuk-width-container" %}
+    {% endgds_header %}
+{% endblock header %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+   <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Vote successful
+      </h1>
+      <div class="govuk-panel__body">
+          <p> Your vote has been successfully recorded for question "{{ question.question_text }}"</p>
+        <a href="{% url "polls:results" question.id %}" class="govuk-button govuk-button--secondary">View results</a>
+      </div>
+    </div> 
+{% endblock content %}
