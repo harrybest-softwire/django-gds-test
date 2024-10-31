@@ -3,14 +3,18 @@
 {% load govuk_frontend_django %}
 
 {% block content %}
-    <a href="{% url 'polls:index' %}" class="govuk-back-link">Back to polls</a>
+    <a href="{% url 'polls:index' %}" class="govuk-back-link govuk-!-margin-bottom-5">Back to polls</a>
     {% if question.choice_set.count != 0 %}
-        <form class="govuk-form-group" action="{% url 'polls:vote' question.id %}" method="post">
+        <form class="govuk-form-group {% if error_message %} govuk-form-group--error {% endif %}" action="{% url 'polls:vote' question.id %}" method="post">
             {% csrf_token %}
             <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"><h1
                         class="govuk-fieldset__heading">{{ question.question_text }}</h1></legend>
-                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                {% if error_message %}
+                    <p class="govuk-error-message">
+                        {{ error_message }} 
+                    </p>
+                {% endif %}
                 <div class="govuk-radios" data-module="govuk-radios">
                     {% for choice in question.choice_set.all %}
                         <div class="govuk-radios__item">
@@ -34,7 +38,7 @@
                 <div class="govuk-error-summary__body">
                     <strong>"{{ question.question_text }}"</strong> poll has no choices
                 </div>
-                <a href="{% url 'polls:index' %}" class="govuk-button govuk-!-margin-top-4">Return to polls</a>
+                <a href="{% url 'polls:index' %}" class="govuk-button govuk-!-margin-top-4 govuk-!-margin-bottom-0">Return to polls</a>
             </div>
         </div>
     {% endif %}
