@@ -1,0 +1,7 @@
+.github
+.idea
+.ruff_cache
+.vscode
+tests
+djangoTesting
+venv
