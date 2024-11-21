@@ -3,8 +3,10 @@ Django==4.2.16
 django-debug-toolbar==4.4.6
 govuk-frontend-django==0.10.0
 govuk-frontend-jinja==3.1.0
+gunicorn==21.2.0
 Jinja2==3.1.4
 MarkupSafe==3.0.2
+packaging==24.1
+psycopg2==2.9.10
+python-dotenv==1.0.1
 sqlparse==0.5.1
-gunicorn==21.2.0
-python-dotenv~=1.0.1
