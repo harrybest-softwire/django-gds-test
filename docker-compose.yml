@@ -19,6 +19,15 @@ services:
       - 8010:80
     depends_on:
       - web
+  database:
+    image: postgres:17
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    ports:
+      - 5432:5432
 
 volumes:
   static_volume:
+  postgres_data:
