@@ -26,3 +26,6 @@ venv.bak/
 
 # Static files
 static/
+
+# Other modules
+ontology/**
